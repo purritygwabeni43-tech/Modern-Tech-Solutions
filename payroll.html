@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HR Payroll Page</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="dashboard-page">
+  <div class="dashboard-shell">
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-mark"><img src="https://i.ibb.co/G3QKYNLR/MODERN-TECH.png" width="60px"></div>
+        <div>
+          <h2>ModernTech</h2>
+          <p>Human resources</p>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <button class="nav-item active">Dashboard</button>
+        <button class="nav-item">Attendance</button>
+        <button class="nav-item">Payroll</button>
+        <button class="nav-item">Payslips</button>
+        <button class="nav-item">Reports</button>
+      </nav>
+
+      <div class="sidebar-note">
+        <h3>Automated payroll</h3>
+        <p>Attendance, deductions, and payslips are coordinated from the payroll data file.</p>
+      </div>
+    </aside>
+
+    <main class="main-panel">
+      <header class="dashboard-header">
+        <div>
+          <p class="eyebrow">Payroll operations</p>
+          <h1>ModernTech payroll automation</h1>
+          <p class="dashboard-copy">Track employee payroll, attendance status, and generate digital payslips automatically.</p>
+        </div>
+        <button class="primary-button" id="downloadAll">Download payroll summary</button>
+      </header>
+
+      <section class="summary-grid">
+        <article class="summary-card">
+          <span>Total payroll</span>
+          <strong id="totalPayroll">R0.00</strong>
+        </article>
+        <article class="summary-card">
+          <span>Average salary</span>
+          <strong id="averageSalary">R0.00</strong>
+        </article>
+        <article class="summary-card">
+          <span>Total leave deductions</span>
+          <strong id="totalLeaves">0 days</strong>
+        </article>
+      </section>
+
+      <section class="content-grid">
+        <article class="table-card">
+          <div class="card-header">
+            <div>
+              <h2>Payroll roster</h2>
+              <p>Calculated from the loaded payroll dataset.</p>
+            </div>
+            <span class="badge">Auto</span>
+          </div>
+          <div class="table-wrap">
+            <table class="payroll-table">
+              <thead>
+                <tr>
+                  <th>Employee</th>
+                  <th>Hours</th>
+                  <th>Leaves</th>
+                  <th>Gross</th>
+                  <th>Deduction</th>
+                  <th>Net pay</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="payrollBody">
+                <tr><td colspan="7" class="loading-row">Loading payroll_data.json...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="info-card">
+          <h2>How automation works</h2>
+          <p>Payroll calculations can be automated using defined business rules such as hourly rates, attendance deductions, and approved bonuses.</p>
+
+          <div class="rule-block">
+            <p><strong>Hourly rate formula</strong></p>
+            <pre>hourlyRate = finalSalary / (hoursWorked - leaveDeductions)</pre>
+          </div>
+
+          <div class="rule-block">
+            <p><strong>Leave deduction</strong></p>
+            <pre>deduction = leaveDeductions × dailyRate</pre>
+          </div>
+
+          <div class="rule-block">
+            <p><strong>Net salary</strong></p>
+            <pre>netPay = gross - deduction</pre>
+          </div>
+
+          <button class="secondary-button" id="generateOne">Generate sample payslip</button>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const hourlyRate = 450;
+    const dailyRate = hourlyRate * 8;
+    let payrollRecords = [];
+
+    function formatMoney(value) {
+      return new Intl.NumberFormat('en-ZA', {style: 'currency', currency: 'ZAR'}).format(value);
+    }
+
+    function setSummary(records) {
+      const totalPayroll = records.reduce((sum, record) => sum + record.finalSalary, 0);
+      const averageSalary = records.length ? totalPayroll / records.length : 0;
+      const totalLeaves = records.reduce((sum, record) => sum + record.leaveDeductions, 0);
+
+      document.getElementById('totalPayroll').textContent = formatMoney(totalPayroll);
+      document.getElementById('averageSalary').textContent = formatMoney(averageSalary);
+      document.getElementById('totalLeaves').textContent = `${totalLeaves} days`;
+    }
+
+    function createPayslipText(employee) {
+      const derivedHourlyRate = employee.finalSalary / (employee.hoursWorked - employee.leaveDeductions);
+      const gross = employee.hoursWorked * derivedHourlyRate;
+      const deduction = employee.leaveDeductions * dailyRate;
+      return [
+        'ModernTech Solutions',
+        'HR Payroll Payslip',
+        '------------------------',
+        `Employee ID: ${employee.employeeId}`,
+        `Hours Worked: ${employee.hoursWorked}`,
+        `Leave Deductions: ${employee.leaveDeductions} days`,
+        `Hourly Rate: ${formatMoney(derivedHourlyRate)}`,
+        `Gross Pay: ${formatMoney(gross)}`,
+        `Leave Penalty: ${formatMoney(deduction)}`,
+        `Net Pay: ${formatMoney(employee.finalSalary)}`,
+        '------------------------',
+        'This digital payslip was generated automatically from the payroll dashboard.'
+      ].join('\n');
+    }
+
+    function downloadTextFile(filename, content) {
+      const blob = new Blob([content], { type: 'text/plain' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    }
+
+    function generatePayslip(employee) {
+      const filename = `payslip-${employee.employeeId}.txt`;
+      downloadTextFile(filename, createPayslipText(employee));
+    }
+
+    function generatePayrollSummary(records) {
+      const lines = records.map((record) => {
+        const derivedHourlyRate = record.finalSalary / (record.hoursWorked - record.leaveDeductions);
+        const gross = record.hoursWorked * derivedHourlyRate;
+        const deduction = record.leaveDeductions * dailyRate;
+        return [
+          `Employee ${record.employeeId}`,
+          `  Hours Worked: ${record.hoursWorked}`,
+          `  Leave Deductions: ${record.leaveDeductions} days`,
+          `  Hourly Rate: ${formatMoney(derivedHourlyRate)}`,
+          `  Gross Pay: ${formatMoney(gross)}`,
+          `  Deduction: ${formatMoney(deduction)}`,
+          `  Net Pay: ${formatMoney(record.finalSalary)}`,
+          ''].join('\n');
+      });
+      downloadTextFile('payroll-summary.txt', ['ModernTech Payroll Summary', '=========================', '', ...lines].join('\n'));
+    }
+
+    function renderPayrollTable(records) {
+      const body = document.getElementById('payrollBody');
+      body.innerHTML = '';
+
+      records.forEach((record) => {
+        const derivedHourlyRate = record.finalSalary / (record.hoursWorked - record.leaveDeductions);
+        const gross = record.hoursWorked * derivedHourlyRate;
+        const deduction = record.leaveDeductions * dailyRate;
+        const row = document.createElement('tr');
+
+        row.innerHTML = `
+          <td>${record.employeeId}</td>
+          <td>${record.hoursWorked}</td>
+          <td>${record.leaveDeductions}</td>
+          <td>${formatMoney(gross)}</td>
+          <td class="deduction-value">${formatMoney(deduction)}</td>
+          <td>${formatMoney(record.finalSalary)}</td>
+          <td><button class="text-button" data-id="${record.employeeId}">Generate</button></td>
+        `;
+
+        body.appendChild(row);
+      });
+
+      body.querySelectorAll('.text-button').forEach((button) => {
+        button.addEventListener('click', () => {
+          const id = Number(button.dataset.id);
+          const employee = payrollRecords.find((record) => record.employeeId === id);
+          if (employee) generatePayslip(employee);
+        });
+      });
+    }
+
+    async function loadPayrollData() {
+      try {
+        const response = await fetch('payroll_data.json');
+        if (!response.ok) throw new Error('Unable to fetch payroll_data.json');
+        const data = await response.json();
+        payrollRecords = data.payrollData || [];
+        setSummary(payrollRecords);
+        renderPayrollTable(payrollRecords);
+      } catch (error) {
+        const body = document.getElementById('payrollBody');
+        body.innerHTML = '<tr><td colspan="7" class="error-row">Unable to load payroll_data.json. Open this page from a local HTTP server or check the file path.</td></tr>';
+        console.error(error);
+      }
+    }
+
+    document.getElementById('generateOne').addEventListener('click', () => {
+      if (payrollRecords.length) {
+        generatePayslip(payrollRecords[0]);
+      }
+    });
+
+    document.getElementById('downloadAll').addEventListener('click', () => {
+      if (payrollRecords.length) {
+        generatePayrollSummary(payrollRecords);
+      }
+    });
+
+    loadPayrollData();
+  </script>
+</body>
+</html>
