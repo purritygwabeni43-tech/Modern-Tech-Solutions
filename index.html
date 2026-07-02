@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ModernTech attendance dashboard </title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- ===================== SIDEBAR ===================== -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <span class="logo"><img src="https://i.ibb.co/G3QKYNLR/MODERN-TECH.png" width="80px">
+
+            <div>
+
+                <h2>ModernTech</h2>
+
+                <span></span>
+
+            </div>
+
+        </div>
+
+        <div class="menu-title">
+            MENU
+        </div>
+
+        <nav>
+
+            <a href="#">
+                <span>⊞</span>
+                Dashboard
+            </a>
+
+            <a href="#">
+                <span>👤</span>
+                Employees
+            </a>
+
+            <a href="#" class="active">
+                <span>📅</span>
+                Attendance
+            </a>
+
+            <a href="#">
+                <span>💳</span>
+                Payslips
+            </a>
+
+            <a href="#">
+                <span>📊</span>
+                Reports
+            </a>
+
+        </nav>
+
+        <div class="user-box">
+
+            <div class="avatar">
+                PM
+            </div>
+
+            <div>
+
+                <h4>Priya Menon</h4>
+
+                <p>HR Manager</p>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+    <!-- ===================== MAIN ===================== -->
+
+    <main class="main">
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <div class="breadcrumb">
+
+                ModernTech
+
+                <span>Attendance</span>
+
+            </div>
+
+            <div class="top-right">
+
+                <div class="live-status">
+
+                    <span class="live-dot"></span>
+
+                    Live
+
+                </div>
+
+                <div class="notification">
+
+                    🔔
+
+                    <span class="badge">7</span>
+
+                </div>
+
+            </div>
+
+        </header>
+
+        <!-- PAGE -->
+
+        <section class="content">
+
+            <div class="page-header">
+
+                <h1>Attendance</h1>
+
+                <p>June 2025 — Tracking 148 employees</p>
+
+            </div>
+
+            <!-- Attendance Cards -->
+
+            <section class="stats">
+
+                <div class="stat-card present">
+
+                    <small>PRESENT</small>
+
+                    <h2 id="presentDays">20</h2>
+
+                    <p>Days this month</p>
+
+                </div>
+
+                <div class="stat-card absent">
+
+                    <small>ABSENT</small>
+
+                    <h2 id="absentDays">2</h2>
+
+                    <p>Days this month</p>
+
+                </div>
+
+                <div class="stat-card late">
+
+                    <small>LATE</small>
+
+                    <h2 id="lateDays">3</h2>
+
+                    <p>Days this month</p>
+
+                </div>
+
+                <div class="stat-card leave">
+
+                    <small>ON LEAVE</small>
+
+                    <h2 id="leaveDays">1</h2>
+
+                    <p>Days this month</p>
+
+                </div>
+
+            </section>
+
+            <!-- Main Attendance -->
+
+            <section class="attendance-wrapper">
+
+                <!-- Employee List -->
+
+                <aside class="employee-panel">
+
+                    <div class="panel-title">
+
+                        EMPLOYEES
+
+                    </div>
+
+                    <div id="employeeList">
+
+                        <!-- JavaScript -->
+
+                    </div>
+
+                </aside>
+
+                <!-- Calendar -->
+
+                <section class="calendar-panel">
+
+                    <div class="employee-header">
+
+                        <div class="employee-avatar" id="employeeAvatar">
+
+                            PM
+
+                        </div>
+
+                        <div>
+
+                            <h2 id="employeeName">
+
+                                Priya Menon
+
+                            </h2>
+
+                            <p id="employeeRole">
+
+                                HR Manager · People Ops
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="calendar-title">
+
+                        JUNE 2025 CALENDAR
+
+                    </div>
+
+                    <div class="weekdays">
+
+                        <span>S</span>
+                        <span>M</span>
+                        <span>T</span>
+                        <span>W</span>
+                        <span>T</span>
+                        <span>F</span>
+                        <span>S</span>
+
+                    </div>
+
+                    <div id="calendar" class="calendar">
+
+                    </div>
+
+                    <div class="legend">
+
+                        <div>
+
+                            <span class="green"></span>
+
+                            Present
+
+                        </div>
+
+                        <div>
+
+                            <span class="red"></span>
+
+                            Absent
+
+                        </div>
+
+                        <div>
+
+                            <span class="yellow"></span>
+
+                            Late
+
+                        </div>
+
+                        <div>
+
+                            <span class="blue"></span>
+
+                            Leave
+
+                        </div>
+
+                        <div>
+
+                            <span class="gray"></span>
+
+                            Weekend
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </section>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
