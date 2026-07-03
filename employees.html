@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ModernTech Solutions - Employee Directory</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            color-scheme: dark;
+            font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background-color: #09121F;
+            color: #EEF3FF;
+            --bg: #07101F;
+            --surface: rgba(15, 23, 42, 0.4);
+            --text: #EEF3FF;
+            --muted: #94A3B8;
+            --muted-strong: #CBD5E1;
+            --primary: #6366F1;
+            --accent: #EC4899;
+            --border: rgba(148, 163, 184, 0.12);
+            --shadow: rgba(14, 31, 57, 0.2);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background: radial-gradient(circle at top left, rgba(59, 130, 246, 0.2), transparent 45%),
+                        radial-gradient(circle at bottom right, rgba(236, 72, 153, 0.12), transparent 40%),
+                        var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* Master Viewport Layout Frame */
+        .app-container {
+            display: flex;
+            min-height: 100vh;
+            width: 100vw;
+        }
+
+        /* Left Sidebar Control Frame */
+        .sidebar-wrapper {
+            width: 260px;
+            min-width: 260px;
+            background-color: rgba(11, 19, 36, 0.7);
+            border-right: 1px solid var(--border);
+            backdrop-filter: blur(12px);
+            display: flex;
+            flex-direction: column;
+            padding: 1.5rem;
+        }
+
+        .sidebar-nav {
+            display: grid;
+            gap: 12px;
+        }
+
+        .nav-item {
+            background: transparent;
+            border: none;
+            color: var(--muted);
+            font-weight: 500;
+            text-align: left;
+            transition: all 0.2s ease;
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+
+        .nav-item:hover {
+            color: var(--muted-strong);
+            background-color: rgba(255, 255, 255, 0.04);
+        }
+
+        /* Refined Sidebar Active View Highlight */
+        .nav-item.active {
+            color: #fff !important;
+            background-color: rgba(255, 255, 255, 0.07) !important;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: none !important;
+        }
+
+        /* Right Main Workspace Framework Viewport */
+        .main-workspace {
+            flex-grow: 1;
+            padding: 2.5rem;
+            overflow-y: auto;
+        }
+
+        /* Custom Modern Pill Shape Header Accent Action Item */
+        .btn-primary {
+            background-color: rgba(99, 102, 241, 0.12) !important;
+            color: #a5b4fc !important;
+            border: 1px solid rgba(99, 102, 241, 0.35) !important;
+            border-radius: 20px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: rgba(99, 102, 241, 0.25) !important;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.1);
+        }
+
+        /* Responsive Matrix Component Grid Mapping layout */
+        .employee-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* Transparent Glassmorphism Employee Individual Profile Blocks */
+        .employee-block {
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px var(--shadow);
+            position: relative;
+        }
+
+        .employee-block .text-muted {
+            color: var(--muted-strong)
+        }
+
+        .employee-block .fw-semibold.small {
+            color: #fff; 
+            font-size: 0.9rem;
+        }
+
+        .employee-block:hover {
+            transform: translateY(-2px);
+            border-color: rgba(99, 102, 241, 0.3);
+            background-color: rgba(24, 31, 59, 0.6);
+        }
+
+        .employee-id {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.25rem;
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .badge-dept {
+            background-color: rgba(10, 204, 238, 0.05) !important;
+            color: var(--muted-strong) !important;
+            border: 1px solid var(--border) !important;
+            font-size: 0.75rem;
+            font-weight: 500;
+            display: inline-block;
+            width: fit-content;
+        }
+
+        .contact-link {
+            color: var(--muted);
+            transition: color 0.2s ease;
+            font-size: 0.85rem;
+        }
+
+        .contact-link:hover {
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .app-container {
+                flex-direction: column;
+            }
+            .sidebar-wrapper {
+                width: 100%;
+                min-width: 100%;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+                padding: 1.25rem;
+            }
+            .main-workspace {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+    
+    <!-- LEFT SIDEBAR CONTROL PANEL -->
+    <aside class="sidebar-wrapper">
+        <div class="mb-4 mt-2 px-1 d-flex align-items-center">
+            <img src="logo-image.png" alt="ModernTech Logo" class="me-2 img-fluid" style="height: 42px; width: auto; object-fit: contain;">
+            <div>
+                <h5 class="fw-bold mb-0 text-white" style="letter-spacing: 0.5px; line-height: 1.2;">ModernTech</h5>
+                <small style="color: var(--muted); font-size: 0.75rem;">HR Central Portal</small>
+            </div>
+        </div>
+        <hr style="border-color: var(--border); margin-top: 0; margin-bottom: 1rem;">
+        
+        <nav class="sidebar-nav">
+            <button class="nav-item" onclick="window.location.href='dashboard.html'"><i class="fa-solid fa-chart-pie me-2"></i>Dashboard</button>
+            <button class="nav-item" onclick="window.location.href='attendance.html'"><i class="fa-solid fa-calendar-check me-2"></i>Attendance</button>
+            <button class="nav-item active" onclick="window.location.href='employees.html'"><i class="fa-solid fa-users me-2"></i>Employees</button>
+            <button class="nav-item" onclick="window.location.href='payslips.html'"><i class="fa-solid fa-wallet me-2"></i>Payslips</button>
+            <button class="nav-item" onclick="window.location.href='reports.html'"><i class="fa-solid fa-file-invoice me-2"></i>Reports</button>
+        </nav>
+    </aside>
+
+    <!-- RIGHT MAIN CONTENT SPACE VIEWPORT -->
+    <main class="main-workspace">
+        
+        <!-- HEADER GRID SECTION -->
+        <div class="d-flex justify-content-between align-items-center pb-3 mb-4" style="border-bottom: 1px solid var(--border);">
+            <div>
+                <h1 class="h2 fw-bold m-0" style="color: var(--text);">Employee Information Directory</h1>
+                <p class="small m-0 mt-1" style="color: var(--muted);">Centralized profile registry mapped from system data channels.</p>
+            </div>
+            <button class="btn btn-primary px-4 py-2" data-bs-toggle="modal" data-bs-target="#addEmployeeModal">
+                <i class="fa-solid fa-plus me-2"></i> Add New Employee
+            </button>
+        </div>
+
+        <!-- NEW RESPONSIVE BLOCKS DIRECTORY CONTAINER -->
+        <div class="employee-grid">
+            <!-- Profile Block 1 -->
+            <div class="employee-block">
+                <span class="employee-id">#01</span>
+                <div class="mb-3">
+                    <h5 class="fw-bold text-white mb-1">Sibongile Nkosi</h5>
+                    <div class="text-info small fw-medium mb-2">Software Engineer</div>
+                    <span class="badge badge-dept rounded-pill px-2.5 py-1">Development</span>
+                </div>
+                <div class="border-top pt-2 mt-2" style="border-color: var(--border) !important;">
+                    <div class="d-flex justify-content-between mb-1"><span class="small text-white-50">Salary:</span><span class="fw-semibold small">R70,000</span></div>
+                    <p class="small text-white-50 mb-3" style="font-size: 0.8rem; min-height: 38px;">Joined in 2015, promoted to Senior in 2018</p>
+                    <a href="mailto:sibongile.nkosi@moderntech.com" class="contact-link text-decoration-none d-block text-truncate"><i class="fa-regular fa-envelope me-2"></i>sibongile.nkosi@moderntech.com</a>
+                </div>
+            </div>
+
+            <!-- Profile Block 2 -->
+            <div class="employee-block">
+                <span class="employee-id">#02</span>
+                <div class="mb-3">
+                    <h5 class="fw-bold text-white mb-1">Lungile Moyo</h5>
+                    <div class="text-info small fw-medium mb-2">HR Manager</div>
+                    <span class="badge badge-dept rounded-pill px-2.5 py-1">HR</span>
+                </div>
+                <div class="border-top pt-2 mt-2" style="border-color: var(--border) !important;">
+                    <div class="d-flex justify-content-between mb-1"><span class="small text-whte-50">Salary:</span><span class="fw-semibold small">R80,000</span></div>
+                    <p class="small text-white-50 mb-3" style="font-size: 0.8rem; min-height: 38px;">Joined in 2013, promoted to Manager in 2017</p>
+                    <a href="mailto:lungile.moyo@moderntech.com" class="contact-link text-decoration-none d-block text-truncate"><i class="fa-regular fa-envelope me-2"></i>lungile.moyo@moderntech.com</a>
+                </div>
+            </div>
+
+            <!-- Profile Block 3 -->
+            <div class="employee-block">
+                <span class="employee-id">#03</span>
+                <div class="mb-3">
+                    <h5 class="fw-bold text-white mb-1">Thabo Molefe</h5>
+                    <div class="text-info small fw-medium mb-2">Quality Analyst</div>
+                    <span class="badge badge-dept rounded-pill px-2.5 py-1">QA</span>
+                </div>
+                <div class="border-top pt-2 mt-2" style="border-color: var(--border) !important;">
+                    <div class="d-flex justify-content-between mb-1"><span class="small text-white-50">Salary:</span><span class="fw-semibold small">R55,000</span></div>
+                    <p class="small text-white-50 mb-3" style="font-size: 0.8rem; min-height: 38px;">Joined in 2018</p>
+                    <a href="mailto:thabo.molefe@moderntech.com" class="contact-link text-decoration-none d-block text-truncate"><i class="fa-regular fa-envelope me-2"></i>thabo.molefe@moderntech.com</a>
+                </div>
+            </div>
+
+            <!-- Profile Block 4 -->
+            <div class="employee-block">
+                <span class="employee-id">#04</span>
+                <div class="mb-3">
+                    <h5 class="fw-bold text-white mb-1">Keshav Naidoo</h5>
+                    <div class="text-info small fw-medium mb-2">Sales Representative</div>
+                    <span class="badge badge-dept rounded-pill px-2.5 py-1">Sales</span>
+                </div>
+                <div class="border-top pt-2 mt-2" style="border-color: var(--border) !important;">
+                    <div class="d-flex justify-content-between mb-1"><span class="small text-white-50">Salary:</span><span class="fw-semibold small">R60,000</span></div>
+                    <p class="small text-white-50 mb-3" style="font-size: 0.8rem; min-height: 38px;">Joined in 2020</p>
+                    <a href="mailto:keshav.naidoo@moderntech.com" class="contact-link text-decoration-none d-block text-truncate"><i class="fa-regular fa-envelope me-2"></i>keshav.naidoo@moderntech.com</a>
+                </div>
+            </div>
+
+            <!-- Profile Block 5 -->
+            <div class="employee-block">
+                <span class="employee-id">#05</span>
+                <div class="mb-3">
+                    <h5 class="fw-bold text-white mb-1">Zanele Khumalo</h5>
+                    <div class="text-info small fw-medium mb-2">Marketing Specialist</div>
+                    <span class="badge badge-dept rounded-pill px-2.5 py-1">Marketing</span>
+                </div>
+                <div class="border-top pt-2 mt-2" style="border-color: var(--border) !important;">
+                    <div class="d-flex justify-content-between mb-1"><span class="small text-white-50">Salary:</span><span class="fw-semibold small">R58,000</span></div>
+                    <p class="small text-white-50 mb-3" style="font-size: 0.8rem; min-height: 38px;">Joined in 2019</p>
+                    <a href="mailto:zanele.khumalo@moderntech.com" class="contact-link text-decoration-none d-block text-truncate"><i class="fa-regular fa-envelope me-2"></i>zanele.khumalo@moderntech.com</a>
+                </div>
+            </div>
+
+            <!-- Profile Block 6 -->
+            <div class="employee-block">
+                <span class="employee-id">#06</span>
+                <div class="mb-3">
+                    <h5 class="fw-bold text-white mb-1">Sipho Zulu</h5>
+                    <div class="text-info small fw-medium mb-2">UI/UX Designer</div>
+                    <span class="badge badge-dept rounded-pill px-2.5 py-1">Design</span>
+                </div>
+                <div class="border-top pt-2 mt-2" style="border-color: var(--border) !important;">
+                    <div class="d-flex justify-content-between mb-1"><span class="small text-white-50">Salary:</span><span class="fw-semibold small">R65,000</span></div>
+                    <p class="small text-white-50 mb-3" style="font-size: 0.8rem; min-height: 38px;">Joined in 2016</p>
+                    <a href="mailto:sipho.zulu@moderntech.com" class="contact-link text-decoration-none d-block text-truncate"><i class="fa-regular fa-envelope me-2"></i>sipho.zulu@moderntech.com</a>
+                </div>
+            </div>
+
+            <!-- Profile Block 7 -->
+            <div class="employee-block">
+                <span class="employee-id">#07</span>
+                <div class="mb-3">
+                    <h5 class="fw-bold text-white mb-1">Naledi Moeketsi</h5>
+                    <div class="text-info small fw-medium mb-2">DevOps Engineer</div>
+                    <span class="badge badge-dept rounded-pill px-2.5 py-1">IT</span>
+                </div>
+                <div class="border-top pt-2 mt-2" style="border-color: var(--border) !important;">
+                    <div class="d-flex justify-content-between mb-1"><span class="small text-white-50">Salary:</span><span class="fw-semibold small">R72,000</span></div>
+                    <p class="small text-white-50 mb-3" style="font-size: 0.8rem; min-height: 38px;">Joined in 2017</p>
+                    <a href="mailto:naledi.moeketsi@moderntech.com" class="contact-link text-decoration-none d-block text-truncate"><i class="fa-regular fa-envelope me-2"></i>naledi.moeketsi@moderntech.com</a>
+                </div>
+            </div>
+
+            <!-- Profile Block 8 -->
+            <div class="employee-block">
+                <span class="employee-id">#08</span>
+                <div class="mb-3">
+                    <h5 class="fw-bold text-white mb-1">Farai Gumbo</h5>
+                    <div class="text-info small fw-medium mb-2">Content Strategist</div>
+                    <span class="badge badge-dept rounded-pill px-2.5 py-1">Marketing</span>
+                </div>
+                <div class="border-top pt-2 mt-2" style="border-color: var(--border) !important;">
+                    <div class="d-flex justify-content-between mb-1"><span class="small text-white-50">Salary:</span><span class="fw-semibold small">R56,000</span></div>
+                    <p class="small text-white-50 mb-3" style="font-size: 0.8rem; min-height: 38px;">Joined in 2021</p>
+                    <a href="mailto:farai.gumbo@moderntech.com" class="contact-link text-decoration-none d-block text-truncate"><i class="fa-regular fa-envelope me-2"></i>farai.gumbo@moderntech.com</a>
+                </div>
+            </div>
+
+            <!-- Profile Block 9 -->
+            <div class="employee-block">
+                <span class="employee-id">#09</span>
+                <div class="mb-3">
+                    <h5 class="fw-bold text-white mb-1">Karabo Dlamini</h5>
+                    <div class="text-info small fw-medium mb-2">Accountant</div>
+                    <span class="badge badge-dept rounded-pill px-2.5 py-1">Finance</span>
+                </div>
+                <div class="border-top pt-2 mt-2" style="border-color: var(--border) !important;">
+                    <div class="d-flex justify-content-between mb-1"><span class="small text-white-50">Salary:</span><span class="fw-semibold small">R62,000</span></div>
+                    <p class="small text-white-50 mb-3" style="font-size: 0.8rem; min-height: 38px;">Joined in 2018</p>
+                    <a href="mailto:karabo.dlamini@moderntech.com" class="contact-link text-decoration-none d-block text-truncate"><i class="fa-regular fa-envelope me-2"></i>karabo.dlamini@moderntech.com</a>
+                </div>
+            </div>
+
+            <!-- Profile Block 10 -->
+            <div class="employee-block">
+                <span class="employee-id">#10</span>
+                <div class="mb-3">
+                    <h5 class="fw-bold text-white mb-1">Fatima Patel</h5>
+                    <div class="text-info small fw-medium mb-2">Customer Support Lead</div>
+                    <span class="badge badge-dept rounded-pill px-2.5 py-1">Support</span>
+                </div>
+                <div class="border-top pt-2 mt-2" style="border-color: var(--border) !important;">
+                    <div class="d-flex justify-content-between mb-1"><span class="small text-white-50">Salary:</span><span class="fw-semibold small">R58,000</span></div>
+                    <p class="small text-white-50 mb-3" style="font-size: 0.8rem; min-height: 38px;">Joined in 2016</p>
+                    <a href="mailto:fatima.patel@moderntech.com" class="contact-link text-decoration-none d-block text-truncate"><i class="fa-regular fa-envelope me-2"></i>fatima.patel@moderntech.com</a>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- Bootstrap 5 JS Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
