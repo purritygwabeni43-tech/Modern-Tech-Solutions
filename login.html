@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ModernTech Solutions | Login</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .video-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #09121f;
+      z-index: 9999;
+    }
+
+    .fullscreen-video {
+      aspect-ratio: 16 / 9;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+  <div id="videoOverlay" class="video-overlay">
+    <video id="loginVideo" class="fullscreen-video" autoplay muted>
+      <source src="modern tech intro-vid.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="page-shell">
+    <div class="login-card">
+      <div class="brand">
+        <span class="logo"><img src="https://i.ibb.co/G3QKYNLR/MODERN-TECH.png" width="90px"></span>
+        <div>
+          <h1>ModernTech Solutions</h1>
+          <p>Secure access to your account</p>
+        </div>
+      </div>
+
+      <form id="loginForm" action="#" method="post" class="login-form">
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text" placeholder="Modtech" required>
+
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" placeholder="Tech150" required>
+
+        <div class="form-row">
+          <label class="checkbox-label">
+            <input type="checkbox" name="remember" checked>
+            Remember me
+          </label>
+          <a href="#" class="forgot-link">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="primary-button">Login</button>
+      </form>
+
+      <div class="signup-prompt">
+        New here? <a href="#">Create an account</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const videoOverlay = document.getElementById('videoOverlay');
+    const loginForm = document.getElementById('loginForm');
+    const usernameInput = document.getElementById('username');
+    const passwordInput = document.getElementById('password');
+
+    usernameInput.value = 'Modtech';
+    passwordInput.value = 'Tech150';
+
+    setTimeout(() => {
+      if (videoOverlay) {
+        videoOverlay.style.display = 'none';
+      }
+    }, 5000);
+
+    loginForm.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+
+      if (username === 'Modtech' && password === 'Tech150') {
+        window.location.href = 'payroll.html';
+      } else {
+        alert('Incorrect username or password.');
+      }
+    });
+  </script>
+</body>
+</html>
