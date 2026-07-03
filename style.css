@@ -248,7 +248,9 @@ input[type="password"]:focus {
   border-color: rgba(99, 102, 241, 0.35);
   background: rgba(99, 102, 241, 0.12);
 }
-
+.nav-item:hover {
+  background: rgba(99, 102, 241, 0.08);
+}
 .sidebar-note {
   border: 1px solid var(--border);
   border-radius: 20px;
