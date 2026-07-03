@@ -51,6 +51,10 @@ body.dashboard-page {
 .sidebar-note {
   background: var(--surface);
 }
+a{
+  
+  text-decoration: none;
+}
 
 .login-card {
   border: 1px solid var(--border);
