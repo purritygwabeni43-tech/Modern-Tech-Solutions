@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ModernTech · Apply for Leave</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="style2.css">
+</head>
+
+<body>
+<div class="dashboard">
+
+    <!-- ===================== SIDEBAR ===================== -->
+    <aside class="sidebar">
+        <div class="logo">
+            <div>
+                <h2>ModernTech</h2>
+                <span></span>
+            </div>
+        </div>
+
+        <div class="menu-title">MENU</div>
+
+        <nav>
+            <a href="dashboard.html"><span>▣</span> Dashboard</a>
+            <a href="employees.html"><span>👤</span> Employees</a>
+            <a href="attendance.html"><span>📅</span> Attendance</a>
+            <a href="leave.html" class="active"><span>📝</span> Leave</a>
+            <a href="payroll.html"><span>💳</span> Payslips</a>
+            <a href="#"><span>📊</span> Reports</a>
+        </nav>
+
+        <div class="user-box">
+            <div class="avatar">PM</div>
+            <div>
+                <h4>Priya Menon</h4>
+                <p>HR Manager</p>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ===================== MAIN ===================== -->
+    <main class="main">
+
+        <!-- TOP BAR -->
+        <header class="topbar">
+            <div class="breadcrumb">
+                ModernTech
+                <span>Leave</span>
+            </div>
+            <div class="top-right">
+                <div class="live-status">
+                    <span class="live-dot"></span>
+                    Live
+                </div>
+                <div class="notification">
+                    🔔
+                    <span class="badge">7</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- PAGE -->
+        <section class="content">
+
+            <div class="page-header">
+                <h1>Apply for Leave</h1>
+                <p>Submit a leave request for approval</p>
+            </div>
+
+            <div class="leave-layout">
+
+                <!-- ===== LEAVE FORM ===== -->
+                <form id="leaveForm" class="leave-form" novalidate>
+
+                    <div id="formMsg" class="form-msg" hidden></div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="empName">Employee name</label>
+                            <input type="text" id="empName" placeholder="e.g. Priya Menon" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="department">Department</label>
+                            <select id="department" required>
+                                <option value="">Select department</option>
+                                <option>Engineering</option>
+                                <option>People Ops</option>
+                                <option>Sales</option>
+                                <option>Finance</option>
+                                <option>Marketing</option>
+                                <option>Operations</option>
+                                <option>Support</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="leaveType">Leave type</label>
+                            <select id="leaveType" required>
+                                <option value="">Select type</option>
+                                <option>Annual Leave</option>
+                                <option>Sick Leave</option>
+                                <option>Family Responsibility</option>
+                                <option>Maternity / Paternity</option>
+                                <option>Study Leave</option>
+                                <option>Unpaid Leave</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="days">Days requested</label>
+                            <input type="text" id="days" value="0" readonly>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="startDate">Start date</label>
+                            <input type="date" id="startDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="endDate">End date</label>
+                            <input type="date" id="endDate" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="reason">Reason</label>
+                        <textarea id="reason" rows="3" placeholder="Briefly describe the reason for your leave"></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="reset" class="btn-secondary">Clear</button>
+                        <button type="submit" class="btn-primary">Submit request</button>
+                    </div>
+                </form>
+
+                <!-- ===== RECENT REQUESTS ===== -->
+                <aside class="requests-panel">
+                    <div class="panel-title">RECENT REQUESTS</div>
+                    <div id="requestList"></div>
+                </aside>
+
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="./leave.js"></script>
+</body>
+</html>

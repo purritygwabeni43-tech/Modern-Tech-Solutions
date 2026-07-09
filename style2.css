@@ -35,7 +35,9 @@ body{
 
     color:var(--text);
 
-    overflow:hidden;
+    overflow-x:hidden;
+
+    min-height:100vh;
 
 }
 
@@ -410,6 +412,305 @@ body{
     font-size:14px;
 
 }
+
+.leave-layout{
+    display:grid;
+    grid-template-columns:1.15fr 0.85fr;
+    gap:24px;
+    align-items:start;
+}
+
+.leave-form,
+.requests-panel{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    box-shadow:0 12px 30px rgba(0, 0, 0, 0.22);
+    overflow:hidden;
+}
+
+.leave-form{
+    padding:24px;
+}
+
+.form-msg{
+    padding:12px 14px;
+    border-radius:10px;
+    margin-bottom:16px;
+    font-size:14px;
+    border:1px solid transparent;
+}
+
+.form-msg.success{
+    background:rgba(52, 211, 153, 0.12);
+    color:#34D399;
+    border-color:rgba(52, 211, 153, 0.25);
+}
+
+.form-msg.error{
+    background:rgba(248, 113, 113, 0.12);
+    color:#F87171;
+    border-color:rgba(248, 113, 113, 0.25);
+}
+
+.form-row{
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    gap:16px;
+    margin-bottom:16px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.form-group label{
+    font-size:13px;
+    font-weight:700;
+    color:var(--muted);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+    width:100%;
+    padding:12px 14px;
+    border:1px solid var(--border);
+    border-radius:10px;
+    background:#0E1528;
+    color:var(--text);
+    font:inherit;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+    outline:none;
+    border-color:var(--green);
+    box-shadow:0 0 0 3px rgba(52, 211, 153, 0.16);
+}
+
+.form-group textarea{
+    resize:vertical;
+    min-height:96px;
+}
+
+.form-actions{
+    display:flex;
+    justify-content:flex-end;
+    gap:12px;
+    margin-top:20px;
+}
+
+.btn-primary,
+.btn-secondary{
+    border:none;
+    border-radius:10px;
+    padding:12px 16px;
+    font-weight:700;
+    cursor:pointer;
+    transition:transform 0.2s ease, opacity 0.2s ease;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover{
+    transform:translateY(-1px);
+}
+
+.btn-primary{
+    background:var(--green);
+    color:#06121A;
+}
+
+.btn-secondary{
+    background:#243047;
+    color:var(--text);
+}
+
+.requests-panel{
+    display:flex;
+    flex-direction:column;
+}
+
+#requestList{
+    padding:16px;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.request-item{
+    border:1px solid var(--border);
+    background:#10172B;
+    border-radius:12px;
+    padding:14px;
+}
+
+.request-actions{
+    display:flex;
+    gap:10px;
+    margin-top:12px;
+    flex-wrap:wrap;
+}
+
+.btn-approve,
+.btn-deny{
+    border:none;
+    border-radius:999px;
+    padding:8px 12px;
+    font-size:12px;
+    font-weight:700;
+    cursor:pointer;
+    transition:transform 0.2s ease, opacity 0.2s ease;
+}
+
+.btn-approve:hover,
+.btn-deny:hover{
+    transform:translateY(-1px);
+}
+
+.btn-approve{
+    background:rgba(52, 211, 153, 0.16);
+    color:#34D399;
+}
+
+.btn-deny{
+    background:rgba(248, 113, 113, 0.16);
+    color:#F87171;
+}
+
+.request-top{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    align-items:flex-start;
+    margin-bottom:8px;
+}
+
+.request-meta{
+    font-size:12px;
+    color:var(--muted);
+    margin-top:3px;
+}
+
+.request-status{
+    padding:4px 8px;
+    border-radius:999px;
+    font-size:11px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+}
+
+.request-status.pending{
+    background:rgba(251, 191, 36, 0.16);
+    color:#FBBF24;
+}
+
+.request-status.approved{
+    background:rgba(52, 211, 153, 0.16);
+    color:#34D399;
+}
+
+.request-status.rejected{
+    background:rgba(248, 113, 113, 0.16);
+    color:#F87171;
+}
+
+.request-type{
+    display:inline-block;
+    padding:4px 8px;
+    border-radius:999px;
+    color:white;
+    font-size:11px;
+    font-weight:700;
+    margin-bottom:8px;
+}
+
+.request-dates,
+.request-reason,
+.empty{
+    font-size:13px;
+    color:var(--muted);
+    line-height:1.5;
+}
+
+.empty{
+    text-align:center;
+    padding:8px 0;
+}
+
+@media (max-width: 1024px){
+    .leave-layout{
+        grid-template-columns:1fr;
+    }
+}
+
+@media (max-width: 760px){
+    .dashboard{
+        flex-direction:column;
+        height:auto;
+        min-height:100vh;
+    }
+
+    .sidebar{
+        width:100%;
+        border-right:none;
+        border-bottom:1px solid var(--border);
+    }
+
+    .sidebar nav{
+        flex-direction:row;
+        flex-wrap:wrap;
+    }
+
+    .sidebar nav a{
+        flex:1 1 45%;
+        justify-content:center;
+    }
+
+    .topbar{
+        padding:0 20px;
+        height:auto;
+        padding-top:16px;
+        padding-bottom:16px;
+        flex-wrap:wrap;
+        gap:12px;
+    }
+
+    .content{
+        padding:20px;
+    }
+
+    .page-header h1{
+        font-size:24px;
+    }
+
+    .form-row{
+        grid-template-columns:1fr;
+    }
+
+    .form-actions{
+        flex-direction:column-reverse;
+    }
+
+    .btn-primary,
+    .btn-secondary{
+        width:100%;
+    }
+
+    .request-actions{
+        flex-direction:column;
+    }
+
+    .btn-approve,
+    .btn-deny{
+        width:100%;
+    }
+}
+
 /* ==========================================================
    ATTENDANCE SUMMARY CARDS
 ========================================================== */
