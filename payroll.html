@@ -9,20 +9,24 @@
 <body class="dashboard-page">
   <div class="dashboard-shell">
     <aside class="sidebar">
-      <div class="sidebar-brand">
-        <div class="brand-mark"><img src="https://i.ibb.co/G3QKYNLR/MODERN-TECH.png" width="60px"></div>
-        <div>
-          <h2>ModernTech</h2>
-          <p>Human resources</p>
-        </div>
-      </div>
+      <!-- Match employees.html nav and brand styling -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-      <nav class="sidebar-nav">
-        <button class="nav-item active">Dashboard</button>
-        <button class="nav-item" ><a href="attendance.html">Attendance</a></button>
-        <button class="nav-item" ><a href="employees.html">Employees</a></button>
-        <button class="nav-item" ><a href="payroll.html">Payslips</a></button>
-        <button class="nav-item" ><a href="reports.html">Reports</a></button>
+      <div style="margin-bottom: 1.5rem; margin-top: 0.5rem; padding: 0 0.25rem; display: flex; align-items: center;">
+          <img src="logo-image.png" alt="ModernTech Logo" style="margin-right: 0.5rem; max-width: 100%; height: 42px; width: auto; object-fit: contain;">
+          <div>
+              <h5 style="font-weight: bold; margin-bottom: 0px; color: white; letter-spacing: 0.5px; line-height: 1.2; font-size: 1.25rem; margin-top: 0;">ModernTech</h5>
+              <small style="color: #94A3B8; font-size: 0.75rem;">HR Central Portal</small>
+          </div>
+      </div>
+      <hr style="border-color: rgba(148, 163, 184, 0.12); margin-top: 0; margin-bottom: 1rem;">
+      
+      <nav class="emp-sidebar-nav" style="margin-bottom: 1.5rem;">
+          <button class="emp-nav-item " onclick="window.location.href='dashboard.html'"><i class="fa-solid fa-chart-pie" style="margin-right: 0.5rem;"></i>Dashboard</button>
+          <button class="emp-nav-item " onclick="window.location.href='attendance.html'"><i class="fa-solid fa-calendar-check" style="margin-right: 0.5rem;"></i>Attendance</button>
+          <button class="emp-nav-item " onclick="window.location.href='employees.html'"><i class="fa-solid fa-users" style="margin-right: 0.5rem;"></i>Employees</button>
+          <button class="emp-nav-item active" onclick="window.location.href='payroll.html'"><i class="fa-solid fa-wallet" style="margin-right: 0.5rem;"></i>Payslips</button>
+          <button class="emp-nav-item " onclick="window.location.href='reports.html'"><i class="fa-solid fa-file-invoice" style="margin-right: 0.5rem;"></i>Reports</button>
       </nav>
 
       <div class="sidebar-note">
@@ -160,7 +164,7 @@
     }
 
     function generatePayslip(employee) {
-      const filename = `payslip-${employee.employeeId}.txt`;
+      const filename = `payslip-${employee.employeeId}.doc`;
       downloadTextFile(filename, createPayslipText(employee));
     }
 
@@ -179,7 +183,7 @@
           `  Net Pay: ${formatMoney(record.finalSalary)}`,
           ''].join('\n');
       });
-      downloadTextFile('payroll-summary.txt', ['ModernTech Payroll Summary', '=========================', '', ...lines].join('\n'));
+      downloadTextFile('payroll-summary.doc', ['ModernTech Payroll Summary', '=========================', '', ...lines].join('\n'));
     }
 
     function renderPayrollTable(records) {
