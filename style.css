@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
 :root {
   color-scheme: dark;
   font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -434,4 +436,37 @@ input[type="password"]:focus {
   .dashboard-header { flex-direction: column; align-items: stretch; }
   .summary-grid { grid-template-columns: 1fr; }
   .sidebar, .table-card, .info-card { padding: 20px; }
+}
+
+.emp-sidebar-nav {
+    display: grid;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+}
+.emp-nav-item {
+    background: transparent;
+    border: none;
+    color: #94A3B8;
+    font-weight: 500;
+    text-align: left;
+    transition: all 0.2s ease;
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    font-family: inherit;
+    font-size: 15px;
+}
+.emp-nav-item:hover {
+    color: #CBD5E1;
+    background-color: rgba(255, 255, 255, 0.04);
+}
+.emp-nav-item.active {
+    color: #fff !important;
+    background-color: rgba(255, 255, 255, 0.07) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    box-shadow: none !important;
 }
