@@ -7,8 +7,16 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body class="dashboard-page">
+  <button class="menu-toggle" id="menuToggle">
+    ☰
+</button>
+
+<div class="overlay" id="overlay"></div>
   <div class="dashboard-shell">
-    <aside class="sidebar">
+    <aside class="sidebar" id="sidebar">
+      <button class="close-sidebar" id="closeSidebar">
+    ✕
+</button>
       <!-- Match employees.html nav and brand styling -->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -25,7 +33,7 @@
           <button class="emp-nav-item " onclick="window.location.href='dashboard.html'"><i class="fa-solid fa-chart-pie" style="margin-right: 0.5rem;"></i>Dashboard</button>
           <button class="emp-nav-item " onclick="window.location.href='attendance.html'"><i class="fa-solid fa-calendar-check" style="margin-right: 0.5rem;"></i>Attendance</button>
           <button class="emp-nav-item " onclick="window.location.href='employees.html'"><i class="fa-solid fa-users" style="margin-right: 0.5rem;"></i>Employees</button>
-          <button class="emp-nav-item active" onclick="window.location.href='payroll.html'"><i class="fa-solid fa-wallet" style="margin-right: 0.5rem;"></i>Payslips</button>
+          <button class="emp-nav-item" onclick="window.location.href='payroll.html'"><i class="fa-solid fa-wallet" style="margin-right: 0.5rem;"></i>Payslips</button>
          
       </nav>
 
@@ -196,15 +204,23 @@
         const deduction = record.leaveDeductions * dailyRate;
         const row = document.createElement('tr');
 
-        row.innerHTML = `
-          <td>${record.employeeId}</td>
-          <td>${record.hoursWorked}</td>
-          <td>${record.leaveDeductions}</td>
-          <td>${formatMoney(gross)}</td>
-          <td class="deduction-value">${formatMoney(deduction)}</td>
-          <td>${formatMoney(record.finalSalary)}</td>
-          <td><button class="text-button" data-id="${record.employeeId}">Generate</button></td>
-        `;
+       row.innerHTML = `
+    <td data-label="Employee">${record.employeeId}</td>
+    <td data-label="Hours">${record.hoursWorked}</td>
+    <td data-label="Leaves">${record.leaveDeductions}</td>
+    <td data-label="Gross">${formatMoney(gross)}</td>
+    <td data-label="Deduction" class="deduction-value">
+        ${formatMoney(deduction)}
+    </td>
+    <td data-label="Net Pay">
+        ${formatMoney(record.finalSalary)}
+    </td>
+    <td data-label="Action">
+        <button class="text-button" data-id="${record.employeeId}">
+            Generate
+        </button>
+    </td>
+`;
 
         body.appendChild(row);
       });
@@ -247,5 +263,41 @@
 
     loadPayrollData();
   </script>
+
+  <script>
+
+const sidebar = document.getElementById("sidebar");
+
+const menuToggle = document.getElementById("menuToggle");
+
+const closeSidebar = document.getElementById("closeSidebar");
+
+const overlay = document.getElementById("overlay");
+
+menuToggle.onclick = function(){
+
+    sidebar.classList.add("show");
+
+    overlay.classList.add("show");
+
+}
+
+closeSidebar.onclick = function(){
+
+    sidebar.classList.remove("show");
+
+    overlay.classList.remove("show");
+
+}
+
+overlay.onclick = function(){
+
+    sidebar.classList.remove("show");
+
+    overlay.classList.remove("show");
+
+}
+
+</script>
 </body>
 </html>
