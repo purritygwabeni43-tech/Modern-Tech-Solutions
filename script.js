@@ -440,14 +440,59 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
-/* ==========================================================
-   OPTIONAL - FUTURE FEATURES
-========================================================== */
+fetch("attendance.json")
+    .then(response => response.json())
+    .then(data => {
 
-// Placeholder for future functionality
-// Examples:
-// - Search employees
-// - Filter by department
-// - Previous/Next month
-// - Attendance reports
-// - Export to PDF
+        let approved = 0;
+        let pending = 0;
+        let denied = 0;
+
+        const tbody = document.getElementById("leaveTableBody");
+
+        tbody.innerHTML = "";
+
+        data.attendanceAndLeave.forEach(employee => {
+
+            employee.leaveRequests.forEach(request => {
+
+                // Count requests
+                switch (request.status.toLowerCase()) {
+
+                    case "approved":
+                        approved++;
+                        break;
+
+                    case "pending":
+                        pending++;
+                        break;
+
+                    case "denied":
+                        denied++;
+                        break;
+                }
+
+                // Add table row
+               tbody.innerHTML += `
+    <tr>
+        <td>${employee.name}</td>
+        <td>${request.date}</td>
+        <td>${request.reason}</td>
+        <td>
+            <span class="status ${request.status.toLowerCase()}">
+                ${request.status}
+            </span>
+        </td>
+    </tr>
+`;
+
+            });
+
+        });
+
+        document.getElementById("approvedLeave").textContent = approved;
+        document.getElementById("pendingLeave").textContent = pending;
+        document.getElementById("deniedLeave").textContent = denied;
+
+    })
+    .catch(error => console.error("Error loading attendance.json:", error));

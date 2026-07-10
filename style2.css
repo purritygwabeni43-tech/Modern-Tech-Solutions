@@ -1306,3 +1306,72 @@ a{
     border: 1px solid rgba(255, 255, 255, 0.15) !important;
     box-shadow: none !important;
 }
+.approved{
+    border-left:5px solid #22c55e;
+}
+
+.pending{
+    border-left:5px solid #f59e0b;
+}
+
+.denied{
+    border-left:5px solid #ef4444;
+}
+/* ===========================
+   LEAVE REQUESTS
+=========================== */
+
+.leave-requests{
+    margin-top:30px;
+    background:#fff;
+    border-radius:18px;
+    padding:25px;
+    box-shadow:0 8px 24px rgba(15,23,42,.08);
+}
+
+.leave-requests h2{
+    margin:0 0 20px;
+    font-size:22px;
+    font-weight:700;
+    color:#1E293B;
+}
+
+.leave-table{
+    width:100%;
+    border-collapse:collapse;
+    overflow:hidden;
+    border-radius:12px;
+    
+}
+
+.leave-table thead{
+    background:#0F172A;
+    color:#fff;
+}
+
+.leave-table th{
+    padding:16px;
+    text-align:left;
+    font-size:14px;
+    font-weight:700;
+    letter-spacing:.5px;
+}
+
+.leave-table td{
+    padding:15px 16px;
+    border-bottom:1px solid #E2E8F0;
+    color:#334155;
+    font-size:14px;
+}
+
+.leave-table tbody tr{
+    transition:.2s;
+}
+
+.leave-table tbody tr:hover{
+    background:#F8FAFC;
+}
+
+.leave-table tbody tr:last-child td{
+    border-bottom:none;
+}

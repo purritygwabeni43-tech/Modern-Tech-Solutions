@@ -160,6 +160,28 @@
                 </div>
 
             </section>
+            <!-- Leave Request Summary -->
+<section class="stats">
+
+    <div class="stat-card approved">
+        <small>APPROVED LEAVE</small>
+        <h2 id="approvedLeave">0</h2>
+        <p>Requests</p>
+    </div>
+
+    <div class="stat-card pending">
+        <small>PENDING LEAVE</small>
+        <h2 id="pendingLeave">0</h2>
+        <p>Requests</p>
+    </div>
+
+    <div class="stat-card denied">
+        <small>DENIED LEAVE</small>
+        <h2 id="deniedLeave">0</h2>
+        <p>Requests</p>
+    </div>
+
+</section>
 
             <!-- Main Attendance -->
 
@@ -282,7 +304,27 @@
                 </section>
 
             </section>
+        <section class="leave-requests">
 
+    <h2>Recent Leave Requests</h2>
+
+    <table class="leave-table">
+        <thead>
+            <tr>
+                <th>Employee</th>
+                <th>Date</th>
+                <th>Reason</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+
+        <tbody id="leaveTableBody">
+
+        </tbody>
+
+    </table>
+
+</section>
         </section>
 
     </main>
