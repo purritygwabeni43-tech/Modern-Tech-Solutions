@@ -1,0 +1,14 @@
+{
+  "reportData": [
+    {
+      "employeeId": 1001,
+      "employeeName": "John Smith",
+      "department": "IT",
+      "position": "Software Developer",
+      "performanceScore": 95,
+      "attendance": 98,
+      "leaveDays": 2,
+      "status": "Active"
+    }
+  ]
+}

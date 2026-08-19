@@ -362,3 +362,34 @@ button {
     border: 1px solid rgba(255, 255, 255, 0.15) !important;
     box-shadow: none !important;
 }
+
+@media print {
+
+    body{
+        background: pink !important;
+        color:#000 !important;
+    }
+
+    .sidebar,
+    .create-report-btn{
+        display:none !important;
+    }
+
+    .app-shell{
+        display:block;
+    }
+
+    .main-content{
+        width:100%;
+        margin:0;
+        padding:20px;
+    }
+
+    .card,
+    .stat-card,
+    .report-card{
+        border:1px solid #ccc;
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+}

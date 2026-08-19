@@ -6,6 +6,7 @@
     <title>Modern Tech Solutions | Company Dashboard</title>
     <link rel="stylesheet" href="dashboard.css" />
   </head>
+
   <body>
     <div class="app-shell">
       <aside class="sidebar">
@@ -26,7 +27,7 @@
             <button class="emp-nav-item " onclick="window.location.href='attendance.html'"><i class="fa-solid fa-calendar-check" style="margin-right: 0.5rem;"></i>Attendance</button>
             <button class="emp-nav-item " onclick="window.location.href='employees.html'"><i class="fa-solid fa-users" style="margin-right: 0.5rem;"></i>Employees</button>
             <button class="emp-nav-item " onclick="window.location.href='payroll.html'"><i class="fa-solid fa-wallet" style="margin-right: 0.5rem;"></i>Payslips</button>
-            <button class="emp-nav-item " onclick="window.location.href='reports.html'"><i class="fa-solid fa-file-invoice" style="margin-right: 0.5rem;"></i>Reports</button>
+            <button class="emp-nav-item " onclick="window.location.href='report.html'"><i class="fa-solid fa-file-invoice" style="margin-right: 0.5rem;"></i>Report</button>
         </nav>
 
         <div class="sidebar-card">
@@ -42,7 +43,7 @@
             <p class="eyebrow">People & operations overview</p>
             <h1>Company dashboard</h1>
           </div>
-          <button class="primary-btn">+ Create report</button>
+          <button id="createReportBtn" class="primary-btn" type="button">+ Create report</button>
         </header>
 
         <section class="hero-grid">
@@ -165,8 +166,47 @@
               </div>
             </div>
           </article>
+          3
+          
         </section>
       </main>
     </div>
-  </body>
+  <script>
+    const createReportBtn = document.getElementById("createReportBtn");
+
+    if (createReportBtn) {
+      createReportBtn.addEventListener("click", () => {
+        const now = new Date();
+        const reportContent = `<!DOCTYPE html>
+<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word">
+<head>
+  <meta charset="utf-8" />
+  <title>Company Dashboard Report</title>
+</head>
+<body>
+  <h1>Company Dashboard Report</h1>
+  <p>Generated: ${now.toLocaleString()}</p>
+  <p>This report summarizes the current dashboard overview.</p>
+  <ul>
+    <li>Attendance: 94.2%</li>
+    <li>Pulse score: 4.8/5</li>
+    <li>Employees: 148</li>
+    <li>Payroll processed: R527k</li>
+  </ul>
+</body>
+</html>`;
+
+        const blob = new Blob([reportContent], { type: "application/msword" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "company_dashboard_report.doc";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+      });
+    }
+  </script>
+</body>
 </html>

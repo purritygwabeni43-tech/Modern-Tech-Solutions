@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Tech Solutions | Reports</title>
+
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+<div class="app-shell">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div style="margin-bottom: 1.5rem; margin-top: 0.5rem; padding:0 0.25rem; display:flex; align-items:center;">
+            <img src="logo-image.png" alt="ModernTech Logo"
+                style="margin-right:0.5rem;height:42px;width:auto;object-fit:contain;">
+
+            <div>
+                <h5 style="font-weight:bold;margin:0;color:white;font-size:1.25rem;">
+                    ModernTech
+                </h5>
+                <small style="color:#94A3B8;">
+                    HR Central Portal
+                </small>
+            </div>
+        </div>
+
+        <hr style="border-color:rgba(148,163,184,.12);margin-bottom:1rem;">
+
+        <nav class="emp-sidebar-nav">
+           <nav class="emp-sidebar-nav" style="margin-bottom: 1.5rem;">
+          <button class="emp-nav-item " onclick="window.location.href='dashboard.html'"><i class="fa-solid fa-chart-pie" style="margin-right: 0.5rem;"></i>Dashboard</button>
+          <button class="emp-nav-item " onclick="window.location.href='attendance.html'"><i class="fa-solid fa-calendar-check" style="margin-right: 0.5rem;"></i>Attendance</button>
+          <button class="emp-nav-item " onclick="window.location.href='employees.html'"><i class="fa-solid fa-users" style="margin-right: 0.5rem;"></i>Employees</button>
+          <button class="emp-nav-item active" onclick="window.location.href='payroll.html'"><i class="fa-solid fa-wallet" style="margin-right: 0.5rem;"></i>Payslips</button>
+          <button class="emp-nav-item " onclick="window.location.href='report.html'"><i class="fa-solid fa-file-invoice" style="margin-right: 0.5rem;"></i>Report</button>
+        </nav>
+
+        <div class="sidebar-card">
+            <p class="small-label">Latest Report</p>
+            <strong>Monthly HR Summary</strong>
+            <p>Updated 2 hours ago.</p>
+        </div>
+
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+                <p class="eyebrow">HR Analytics</p>
+                <h1>Company Reports</h1>
+            </div>
+
+            <button id="createReportBtn" class="create-report-btn">
+    <i class="fas fa-download"></i>
+    Create Report
+</button>
+
+        </header>
+
+        <!-- Hero -->
+        <section class="hero-grid">
+
+            <article class="hero-card">
+
+                <p class="eyebrow">Reporting Overview</p>
+
+                <h3>Monthly reports generated successfully.</h3>
+
+                <p>
+                    View employee, attendance, payroll and performance
+                    reports from one central location.
+                </p>
+
+                <div class="hero-metrics">
+
+                    <div>
+                        <strong>18</strong>
+                        <span>Reports</span>
+                    </div>
+
+                    <div>
+                        <strong>96%</strong>
+                        <span>Accuracy</span>
+                    </div>
+
+                    <div>
+                        <strong>24 Jul</strong>
+                        <span>Last Generated</span>
+                    </div>
+
+                </div>
+
+            </article>
+
+            <article class="card chart-card">
+
+                <div class="card-head">
+
+                    <div>
+                        <p class="small-label">Report Activity</p>
+                        <h4>Downloads</h4>
+                    </div>
+
+                    <span class="pill">+22%</span>
+
+                </div>
+
+                <svg viewBox="0 0 320 140" class="line-chart">
+
+                    <path d="M10 120 C60 110 90 70 120 80
+                    S180 100 220 60
+                    S270 45 310 20"/>
+
+                    <circle cx="120" cy="80" r="4"></circle>
+                    <circle cx="220" cy="60" r="4"></circle>
+                    <circle cx="310" cy="20" r="4"></circle>
+
+                </svg>
+
+            </article>
+
+        </section>
+
+        <!-- Stats -->
+        <section class="stats-grid">
+
+            <article class="card stat-card">
+                <p class="small-label">Attendance Reports</p>
+                <h3>34</h3>
+                <span class="positive">▲ 6 this month</span>
+            </article>
+
+            <article class="card stat-card">
+                <p class="small-label">Payroll Reports</p>
+                <h3>12</h3>
+                <span class="positive">Processed</span>
+            </article>
+
+            <article class="card stat-card">
+                <p class="small-label">Performance Reports</p>
+                <h3>27</h3>
+                <span class="positive">Completed</span>
+            </article>
+
+            <article class="card stat-card">
+                <p class="small-label">Employee Reports</p>
+                <h3>148</h3>
+                <span class="neutral">Current Staff</span>
+            </article>
+
+        </section>
+
+        <!-- Content -->
+        <section class="content-grid">
+
+            <!-- Available Reports -->
+            <article class="card">
+
+                <div class="card-head">
+                    <div>
+                        <p class="small-label">Available Reports</p>
+                        <h4>Generate Reports</h4>
+                    </div>
+                </div>
+
+                <div class="review-list">
+
+                    <div class="review-item">
+                        <div>
+                            <strong>Employee Report</strong>
+                            <p>Complete employee information.</p>
+                        </div>
+
+                        <button class="primary-btn">
+                            Generate
+                        </button>
+                    </div>
+
+                    <div class="review-item">
+                        <div>
+                            <strong>Attendance Report</strong>
+                            <p>Monthly attendance summary.</p>
+                        </div>
+
+                        <button class="primary-btn">
+                            Generate
+                        </button>
+                    </div>
+
+                    <div class="review-item">
+                        <div>
+                            <strong>Payroll Report</strong>
+                            <p>Salary and payment records.</p>
+                        </div>
+
+                        <button class="primary-btn">
+                            Generate
+                        </button>
+                    </div>
+
+                    <div class="review-item">
+                        <div>
+                            <strong>Performance Report</strong>
+                            <p>Employee KPI analysis.</p>
+                        </div>
+
+                        <button class="primary-btn">
+                            Generate
+                        </button>
+                    </div>
+
+                </div>
+
+            </article>
+
+            <!-- Recent Reports -->
+            <article class="card">
+
+                <div class="card-head">
+
+                    <div>
+                        <p class="small-label">Recent Reports</p>
+                        <h4>History</h4>
+                    </div>
+
+                </div>
+
+                <div class="review-list">
+
+                    <div class="review-item">
+                        <div>
+                            <strong>June Payroll Report</strong>
+                            <p>Generated on 24 June 2026</p>
+                        </div>
+
+                        <span class="pill">
+                            PDF
+                        </span>
+
+                    </div>
+
+                    <div class="review-item">
+
+                        <div>
+                            <strong>Attendance Summary</strong>
+                            <p>Generated on 21 June 2026</p>
+                        </div>
+
+                        <span class="pill">
+                            XLS
+                        </span>
+
+                    </div>
+
+                    <div class="review-item">
+
+                        <div>
+                            <strong>Performance Review</strong>
+                            <p>Generated on 18 June 2026</p>
+                        </div>
+
+                        <span class="pill">
+                            PDF
+                        </span>
+
+                    </div>
+
+                    <div class="review-item">
+
+                        <div>
+                            <strong>Employee Directory</strong>
+                            <p>Generated on 10 June 2026</p>
+                        </div>
+
+                        <span class="pill">
+                            CSV
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+        </section>
+
+
+    </main>
+
+</div>
+<script>
+
+    document.getElementById('createReportBtn').addEventListener('click', function() {
+        // Create a new Blob with the content of the report
+        const reportContent = 'This is a sample report content.';
+        const blob = new Blob([reportContent], { type: 'text/plain' });
+
+        // Create a temporary link element
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'report.txt'; // Set the desired file name
+
+        // Append the link to the body, click it, and remove it
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        // Revoke the object URL to free up memory
+        URL.revokeObjectURL(link.href);
+    });
+</script>
+</body>
+</html>
