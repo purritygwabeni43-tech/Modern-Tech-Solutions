@@ -1,0 +1,231 @@
+.page-header {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.attendance-primary-button,
+.attendance-secondary-button,
+.attendance-edit-button,
+.attendance-delete-button,
+.attendance-icon-button {
+    border: 0;
+    border-radius: 8px;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.attendance-primary-button {
+    background: var(--primary);
+    color: #fff;
+    padding: 0.75rem 1rem;
+}
+
+.attendance-primary-button:hover {
+    background: #4f46e5;
+}
+
+.attendance-records {
+    margin-top: 24px;
+    padding: 22px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+
+.calendar-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.calendar-navigation .calendar-title {
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.calendar-month-button {
+    width: 34px;
+    height: 34px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--muted-strong);
+    background: #1e293b;
+    cursor: pointer;
+}
+
+.calendar-month-button:hover {
+    color: #fff;
+    background: #334155;
+}
+
+.attendance-records-header h2 {
+    font-size: 20px;
+}
+
+.attendance-records-header p {
+    margin-top: 4px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.attendance-table-wrapper {
+    overflow-x: auto;
+    margin-top: 18px;
+}
+
+.attendance-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.attendance-table th,
+.attendance-table td {
+    padding: 13px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
+.attendance-table th {
+    color: var(--muted);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.attendance-status {
+    display: inline-block;
+    padding: 5px 9px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.attendance-status.present {
+    background: rgba(52, 211, 153, 0.15);
+    color: var(--green);
+}
+
+.attendance-status.absent {
+    background: rgba(248, 113, 113, 0.15);
+    color: var(--red);
+}
+
+.attendance-status.late {
+    background: rgba(251, 191, 36, 0.18);
+    color: var(--yellow);
+}
+
+.attendance-status.leave {
+    background: rgba(56, 189, 248, 0.18);
+    color: var(--blue);
+}
+
+.attendance-actions-cell {
+    display: flex;
+    gap: 8px;
+}
+
+.attendance-edit-button,
+.attendance-delete-button {
+    padding: 7px 10px;
+    color: #fff;
+}
+
+.attendance-edit-button {
+    background: #2563eb;
+}
+
+.attendance-delete-button {
+    background: #dc2626;
+}
+
+.attendance-empty {
+    color: var(--muted);
+    text-align: center !important;
+}
+
+.attendance-modal[hidden] {
+    display: none;
+}
+
+.attendance-modal {
+    position: fixed;
+    z-index: 20;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+}
+
+.attendance-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(2, 6, 23, 0.72);
+}
+
+.attendance-dialog {
+    position: relative;
+    z-index: 1;
+    width: min(460px, 100%);
+    padding: 22px;
+    background: #101c30;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+}
+
+.attendance-dialog-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.attendance-icon-button {
+    width: 34px;
+    height: 34px;
+    background: transparent;
+    color: var(--muted-strong);
+    font-size: 18px;
+}
+
+.attendance-form {
+    display: grid;
+    gap: 8px;
+}
+
+.attendance-form label {
+    margin-top: 6px;
+    color: var(--muted-strong);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.attendance-form select,
+.attendance-form input {
+    width: 100%;
+    padding: 11px 12px;
+    color: var(--text);
+    background: #0a1628;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font: inherit;
+}
+
+.attendance-form-actions {
+    display: flex;
+    justify-content: end;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.attendance-secondary-button {
+    padding: 0.75rem 1rem;
+    color: var(--muted-strong);
+    background: #1e293b;
+}

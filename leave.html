@@ -1,0 +1,540 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Leave | ModernTech HR Central Portal</title>
+
+    <link rel="stylesheet" href="leave.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-logo">
+                MT
+            </div>
+
+            <div>
+                <h2>ModernTech</h2>
+                <span>HR CENTRAL PORTAL</span>
+            </div>
+        </div>
+
+        <nav class="navigation">
+
+            <a href="dashboard.html" class="nav-item">
+                <i class="fa-solid fa-chart-pie"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="attendance.html" class="nav-item">
+                <i class="fa-solid fa-calendar-check"></i>
+                <span>Attendance</span>
+            </a>
+
+            <a href="leave.html" class="nav-item active">
+                <i class="fa-solid fa-plane-departure"></i>
+                <span>Leave</span>
+            </a>
+
+            <a href="employees.html" class="nav-item">
+                <i class="fa-solid fa-users"></i>
+                <span>Employees</span>
+            </a>
+
+            <a href="payslips.html" class="nav-item">
+                <i class="fa-solid fa-wallet"></i>
+                <span>Payslips</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-help">
+            <i class="fa-solid fa-headset"></i>
+
+            <div>
+                <strong>Need Help?</strong>
+                <small>Contact HR Support</small>
+            </div>
+
+            <i class="fa-solid fa-chevron-right"></i>
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- TOP BAR -->
+        <header class="top-bar">
+
+            <div class="breadcrumb">
+                ModernTech
+                <span>/</span>
+                <strong>Leave</strong>
+            </div>
+
+            <div class="top-right">
+
+                <div class="live-status">
+                    <span class="live-dot"></span>
+                    Live
+                </div>
+
+                <div class="notification">
+                    <i class="fa-solid fa-bell"></i>
+                    <span class="notification-count">7</span>
+                </div>
+
+                <div class="user-profile">
+
+                    <div class="user-avatar">
+                        SN
+                    </div>
+
+                    <div class="user-info">
+                        <strong>Sibongile Nkosi</strong>
+                        <small>Software Engineer</small>
+                    </div>
+
+                    <i class="fa-solid fa-chevron-down"></i>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- PAGE -->
+        <section class="page-container">
+
+            <!-- PAGE HEADER -->
+            <div class="page-header">
+
+                <div>
+                    <h1>Leave</h1>
+                    <p>Request leave and manage leave requests</p>
+                </div>
+
+            </div>
+
+
+            <!-- SUMMARY CARDS -->
+            <div class="summary-grid">
+
+                <div class="summary-card blue">
+
+                    <div class="summary-icon">
+                        <i class="fa-solid fa-calendar-days"></i>
+                    </div>
+
+                    <div>
+                        <span>Leave Balance</span>
+                        <h2>18</h2>
+                        <small>Days available</small>
+                    </div>
+
+                </div>
+
+
+                <div class="summary-card orange">
+
+                    <div class="summary-icon">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+
+                    <div>
+                        <span>Pending Requests</span>
+                        <h2>2</h2>
+                        <small>Requests</small>
+                    </div>
+
+                </div>
+
+
+                <div class="summary-card green">
+
+                    <div class="summary-icon">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+
+                    <div>
+                        <span>Approved</span>
+                        <h2>6</h2>
+                        <small>This year</small>
+                    </div>
+
+                </div>
+
+
+                <div class="summary-card purple">
+
+                    <div class="summary-icon">
+                        <i class="fa-solid fa-briefcase"></i>
+                    </div>
+
+                    <div>
+                        <span>Leave Taken</span>
+                        <h2>12</h2>
+                        <small>Days this year</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- REQUEST LEAVE -->
+            <section class="content-card request-card">
+
+                <div class="section-heading">
+
+                    <div>
+                        <h2>Request Leave</h2>
+                        <p>Fill in the details below to request time off</p>
+                    </div>
+
+                    <div class="section-icon">
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </div>
+
+                </div>
+
+
+                <form id="leaveForm" class="leave-form">
+
+
+                    <!-- EMPLOYEE SEARCH -->
+                    <div class="form-group employee-field">
+
+                        <label>
+                            Employee Name <span>*</span>
+                        </label>
+
+                        <div class="employee-search">
+
+                            <i class="fa-solid fa-magnifying-glass"></i>
+
+                            <input
+                                type="text"
+                                id="employeeSearch"
+                                placeholder="Search employee..."
+                                autocomplete="off"
+                            >
+
+                        </div>
+
+
+                        <!-- EMPLOYEE RESULTS -->
+                        <div
+                            id="employeeResults"
+                            class="employee-results"
+                        >
+
+                            <!-- Javascript will insert employees here -->
+
+                        </div>
+
+
+                        <input
+                            type="hidden"
+                            id="selectedEmployee"
+                            name="employee"
+                        >
+
+                    </div>
+
+
+                    <!-- LEAVE TYPE -->
+                    <div class="form-group">
+
+                        <label for="leaveType">
+                            Leave Type <span>*</span>
+                        </label>
+
+                        <select id="leaveType" name="leaveType">
+
+                            <option value="">
+                                Select leave type
+                            </option>
+
+                            <option value="Annual Leave">
+                                Annual Leave
+                            </option>
+
+                            <option value="Sick Leave">
+                                Sick Leave
+                            </option>
+
+                            <option value="Family Responsibility">
+                                Family Responsibility
+                            </option>
+
+                            <option value="Personal Leave">
+                                Personal Leave
+                            </option>
+
+                            <option value="Bereavement">
+                                Bereavement
+                            </option>
+
+                            <option value="Medical Appointment">
+                                Medical Appointment
+                            </option>
+
+                            <option value="Other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- START DATE -->
+                    <div class="form-group">
+
+                        <label for="startDate">
+                            Start Date <span>*</span>
+                        </label>
+
+                        <div class="date-input">
+
+                            <input
+                                type="date"
+                                id="startDate"
+                                name="startDate"
+                            >
+
+                            <i class="fa-regular fa-calendar"></i>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- END DATE -->
+                    <div class="form-group">
+
+                        <label for="endDate">
+                            End Date <span>*</span>
+                        </label>
+
+                        <div class="date-input">
+
+                            <input
+                                type="date"
+                                id="endDate"
+                                name="endDate"
+                            >
+
+                            <i class="fa-regular fa-calendar"></i>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- REASON -->
+                    <div class="form-group reason-group">
+
+                        <label for="reason">
+                            Reason <span>*</span>
+                        </label>
+
+                        <textarea
+                            id="reason"
+                            name="reason"
+                            placeholder="Enter the reason for your leave request..."
+                        ></textarea>
+
+                        <small>
+                            Please provide a brief reason for your leave request.
+                        </small>
+
+                    </div>
+
+
+                    <!-- SUBMIT -->
+                    <div class="form-actions">
+
+                        <button
+                            type="submit"
+                            class="submit-btn"
+                        >
+
+                            <i class="fa-solid fa-paper-plane"></i>
+
+                            Submit Request
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+
+            <!-- EMPLOYEES REQUESTING LEAVE -->
+            <section class="content-card requests-card">
+
+                <div class="section-heading table-heading">
+
+                    <div>
+                        <h2>Employees Requesting Leave</h2>
+
+                        <p>
+                            View and manage leave requests from employees
+                        </p>
+                    </div>
+
+
+                    <div class="table-controls">
+
+                        <!-- SEARCH REQUESTS -->
+                        <div class="table-search">
+
+                            <i class="fa-solid fa-magnifying-glass"></i>
+
+                            <input
+                                type="text"
+                                id="requestSearch"
+                                placeholder="Search employee name..."
+                            >
+
+                        </div>
+
+
+                        <!-- STATUS FILTER -->
+                        <select
+                            id="statusFilter"
+                            class="status-filter"
+                        >
+
+                            <option value="all">
+                                All Status
+                            </option>
+
+                            <option value="Pending">
+                                Pending
+                            </option>
+
+                            <option value="Approved">
+                                Approved
+                            </option>
+
+                            <option value="Denied">
+                                Denied
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TABLE -->
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Employee Name</th>
+
+                                <th>Leave Type</th>
+
+                                <th>Start Date</th>
+
+                                <th>End Date</th>
+
+                                <th>Reason</th>
+
+                                <th>Status</th>
+
+                                <th>Requested On</th>
+
+                                <th>Action</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="leaveTableBody">
+
+
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <!-- TABLE FOOTER -->
+                <div class="table-footer">
+
+                    <span id="resultCount">
+                        Showing 1 to 5 of 5 requests
+                    </span>
+
+                    <div class="pagination">
+
+                        <button>
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+
+                        <button class="current">
+                            1
+                        </button>
+
+                        <button>
+                            2
+                        </button>
+
+                        <button>
+                            3
+                        </button>
+
+                        <button>
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </section>
+
+    </main>
+
+
+    <script src="leave.js"></script>
+
+</body>
+</html>
+
+

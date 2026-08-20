@@ -16,6 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style2.css">
+    <link rel="stylesheet" href="attendance-actions.css">
 
 </head>
 
@@ -42,6 +43,7 @@
         <nav class="emp-sidebar-nav" style="margin-bottom: 1.5rem; padding: 0 1.25rem;">
             <button class="emp-nav-item " onclick="window.location.href='dashboard.html'"><i class="fa-solid fa-chart-pie" style="margin-right: 0.5rem;"></i>Dashboard</button>
             <button class="emp-nav-item active" onclick="window.location.href='attendance.html'"><i class="fa-solid fa-calendar-check" style="margin-right: 0.5rem;"></i>Attendance</button>
+            <button class="emp-nav-item" onclick="window.location.href='leave.html'"><i class="fa-solid fa-plane-departure" style="margin-right: 0.5rem;"></i>Leave</button>
             <button class="emp-nav-item " onclick="window.location.href='employees.html'"><i class="fa-solid fa-users" style="margin-right: 0.5rem;"></i>Employees</button>
             <button class="emp-nav-item " onclick="window.location.href='payroll.html'"><i class="fa-solid fa-wallet" style="margin-right: 0.5rem;"></i>Payslips</button>
             
@@ -113,6 +115,10 @@
 
                 <p>June 2025 — Tracking 148 employees</p>
 
+                <button type="button" id="addAttendanceButton" class="attendance-primary-button">
+                    <i class="fa-solid fa-plus"></i>
+                    Add Attendance
+                </button>
             </div>
 
             <!-- Attendance Cards -->
@@ -160,29 +166,6 @@
                 </div>
 
             </section>
-            <!-- Leave Request Summary -->
-<section class="stats">
-
-    <div class="stat-card approved">
-        <small>APPROVED LEAVE</small>
-        <h2 id="approvedLeave">0</h2>
-        <p>Requests</p>
-    </div>
-
-    <div class="stat-card pending">
-        <small>PENDING LEAVE</small>
-        <h2 id="pendingLeave">0</h2>
-        <p>Requests</p>
-    </div>
-
-    <div class="stat-card denied">
-        <small>DENIED LEAVE</small>
-        <h2 id="deniedLeave">0</h2>
-        <p>Requests</p>
-    </div>
-
-</section>
-
             <!-- Main Attendance -->
 
             <section class="attendance-wrapper">
@@ -235,10 +218,18 @@
 
                     </div>
 
-                    <div class="calendar-title">
+                    <div class="calendar-navigation">
+                        <button type="button" id="previousMonthButton" class="calendar-month-button" aria-label="Previous month">
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
 
-                        JUNE 2025 CALENDAR
+                        <div class="calendar-title">
+                            JUNE 2025 CALENDAR
+                        </div>
 
+                        <button type="button" id="nextMonthButton" class="calendar-month-button" aria-label="Next month">
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </button>
                     </div>
 
                     <div class="weekdays">
@@ -304,34 +295,70 @@
                 </section>
 
             </section>
-        <section class="leave-requests">
 
-    <h2>Recent Leave Requests</h2>
+            <section class="attendance-records" aria-labelledby="attendanceRecordsTitle">
+                <div class="attendance-records-header">
+                    <div>
+                        <h2 id="attendanceRecordsTitle">Attendance Records</h2>
+                        <p>Manage the records for the selected employee.</p>
+                    </div>
+                </div>
 
-    <table class="leave-table">
-        <thead>
-            <tr>
-                <th>Employee</th>
-                <th>Date</th>
-                <th>Reason</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-
-        <tbody id="leaveTableBody">
-
-        </tbody>
-
-    </table>
-
-</section>
+                <div class="attendance-table-wrapper">
+                    <table class="attendance-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="attendanceTableBody"></tbody>
+                    </table>
+                </div>
+            </section>
         </section>
 
     </main>
 
 </div>
 
-<script src="script.js"></script>
+<div id="attendanceModal" class="attendance-modal" hidden>
+    <div class="attendance-modal-backdrop" data-close-modal></div>
+    <section class="attendance-dialog" role="dialog" aria-modal="true" aria-labelledby="attendanceModalTitle">
+        <div class="attendance-dialog-header">
+            <h2 id="attendanceModalTitle">Add Attendance</h2>
+            <button type="button" class="attendance-icon-button" aria-label="Close" data-close-modal>
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <form id="attendanceForm" class="attendance-form">
+            <input type="hidden" id="attendanceId">
+
+            <label for="attendanceEmployee">Employee</label>
+            <select id="attendanceEmployee" required></select>
+
+            <label for="attendanceDate">Date</label>
+            <input type="date" id="attendanceDate" required>
+
+            <label for="attendanceStatus">Status</label>
+            <select id="attendanceStatus" required>
+                <option value="Present">Present</option>
+                <option value="Absent">Absent</option>
+                <option value="Late">Late</option>
+                <option value="Leave">Leave</option>
+            </select>
+
+            <div class="attendance-form-actions">
+                <button type="button" class="attendance-secondary-button" data-close-modal>Cancel</button>
+                <button type="submit" class="attendance-primary-button">Save Record</button>
+            </div>
+        </form>
+    </section>
+</div>
+
+<script src="attendance-crud.js"></script>
 
 </body>
 
